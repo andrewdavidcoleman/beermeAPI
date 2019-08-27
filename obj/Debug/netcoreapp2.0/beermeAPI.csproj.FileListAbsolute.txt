@@ -1,0 +1,11 @@
+/Users/Andrew/Projects/beermeAPI/beermeAPI/bin/Debug/netcoreapp2.0/beermeAPI.deps.json
+/Users/Andrew/Projects/beermeAPI/beermeAPI/bin/Debug/netcoreapp2.0/beermeAPI.runtimeconfig.json
+/Users/Andrew/Projects/beermeAPI/beermeAPI/bin/Debug/netcoreapp2.0/beermeAPI.runtimeconfig.dev.json
+/Users/Andrew/Projects/beermeAPI/beermeAPI/bin/Debug/netcoreapp2.0/beermeAPI.dll
+/Users/Andrew/Projects/beermeAPI/beermeAPI/bin/Debug/netcoreapp2.0/beermeAPI.pdb
+/Users/Andrew/Projects/beermeAPI/beermeAPI/obj/Debug/netcoreapp2.0/beermeAPI.csprojAssemblyReference.cache
+/Users/Andrew/Projects/beermeAPI/beermeAPI/obj/Debug/netcoreapp2.0/beermeAPI.csproj.CoreCompileInputs.cache
+/Users/Andrew/Projects/beermeAPI/beermeAPI/obj/Debug/netcoreapp2.0/beermeAPI.AssemblyInfoInputs.cache
+/Users/Andrew/Projects/beermeAPI/beermeAPI/obj/Debug/netcoreapp2.0/beermeAPI.AssemblyInfo.cs
+/Users/Andrew/Projects/beermeAPI/beermeAPI/obj/Debug/netcoreapp2.0/beermeAPI.dll
+/Users/Andrew/Projects/beermeAPI/beermeAPI/obj/Debug/netcoreapp2.0/beermeAPI.pdb
