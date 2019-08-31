@@ -7,57 +7,36 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace beermeAPI.Controllers
 {
-    [Route("api")]
+    [Route("/")]
     public class BeerMeController : Controller
     {
         // GET api/values
         [HttpGet]
-        public List<Recipe> Get()
+        public List<Beer> Get()
         {
-            return new List<Recipe>() {
-                new Recipe()
+            return new List<Beer>() {
+                new Beer()
                 {
-                    RecipeId = 1,
+                    BeerId = 1,
                     Name = "IPA"
                 },
-                new Recipe()
+                new Beer()
                 {
-                    RecipeId = 2,
+                    BeerId = 2,
                     Name = "Golden Ale"
                 },
-                new Recipe()
+                new Beer()
                 {
-                    RecipeId = 3,
+                    BeerId = 3,
                     Name = "Orange Belgian Wheat"
                 }
             };
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
-        public Recipe Get(int id)
+        public Beer Get(int id)
         {
-            return new Recipe() {
-                RecipeId = 1,
-                Name = "IPA",
-                Ingredients = new List<Ingredient>() {
-                    new Ingredient(){
-                        IngredientId = 1,
-                        Description = "Malted Hops",
-                        Quantity = "1 oz"
-                    },
-                    new Ingredient(){
-                        IngredientId = 2,
-                        Description = "Some other hops",
-                        Quantity = "1 oz"
-                    },
-                    new Ingredient(){
-                        IngredientId = 3,
-                        Description = "Even more hops",
-                        Quantity = "1 oz"
-                    }
-                }
-            };
+            return new Beer();
         }
 
         // POST api/values

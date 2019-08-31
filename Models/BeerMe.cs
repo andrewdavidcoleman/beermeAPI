@@ -4,7 +4,7 @@ namespace beermeAPI.Models
 {
     public class BeerMeContext : DbContext
     {
-        public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<Beer> Beers { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -14,11 +14,10 @@ namespace beermeAPI.Models
         }
     }
 
-    public class Recipe
+    public class Beer
     {
-        public int RecipeId { get; set; }
+        public int BeerId { get; set; }
         public string Name { get; set; }
-        public List<Ingredient> Ingredients { get; set; }
     }
 
     public class Ingredient
