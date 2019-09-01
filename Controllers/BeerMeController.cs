@@ -1,60 +1,63 @@
-﻿using System;
 using System.Collections.Generic;
+using beermeAPI;
 using System.Linq;
 using System.Threading.Tasks;
 using beermeAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace beermeAPI.Controllers
 {
-    [Route("/")]
-    public class BeerMeController : Controller
+  [Route("")]
+  public class BeerController : InjectedController
+  {
+
+    public BeerController(BeerMeContext context) : base(context) { }
+
+    // GET api/values
+    // [HttpGet]
+    // public async Task<IActionResult> GetAllBeers()
+    // {
+    //   var beerList = await db.Beers.FindAsync();
+    //   if (beerList == default(List<Beer>))
+    //   {
+    //     return NotFound();
+    //   }
+    //   return Ok(beerList);
+    // }
+
+    [HttpGet("{beerId}")]
+    public async Task<IActionResult> Get(int beerId)
     {
-        // GET api/values
-        [HttpGet]
-        public List<Beer> Get()
-        {
-            return new List<Beer>() {
-                new Beer()
-                {
-                    BeerId = 1,
-                    Name = "IPA"
-                },
-                new Beer()
-                {
-                    BeerId = 2,
-                    Name = "Golden Ale"
-                },
-                new Beer()
-                {
-                    BeerId = 3,
-                    Name = "Orange Belgian Wheat"
-                }
-            };
-        }
-
-        [HttpGet("{id}")]
-        public Beer Get(int id)
-        {
-            return new Beer();
-        }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+      var beer = await db.Beers.FindAsync(beerId);
+      if (beer == null)
+      {
+          return NotFound();
+      }
+      return Ok(beer);
     }
+
+    [HttpPost]
+    public async Task<IActionResult> AddBeer([FromBody] Beer beer)
+    {
+      if (!ModelState.IsValid)
+      {
+        return BadRequest(ModelState);
+      }
+      await db.Beers.AddAsync(beer);
+      await db.SaveChangesAsync();
+      return Ok(new { BeerId = beer.BeerId });
+    }
+  }
+
+  // Helper class to take care of db context injection.
+  public class InjectedController: ControllerBase
+  {
+    protected readonly BeerMeContext db;
+
+    public InjectedController(BeerMeContext context)
+    {
+      db = context;
+    }
+  }
 }
