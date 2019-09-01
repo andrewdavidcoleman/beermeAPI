@@ -14,6 +14,11 @@ namespace beermeAPI.Models
     public DbSet<Direction> Directions { get; set; }
 
     public BeerMeContext(DbContextOptions options): base(options) { }
+
+    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    // {
+    //  optionsBuilder.UseMySQL("server=localhost:3306;database=BeerMe;user=user;password=password");
+    // }
   }
 
   public class Beer

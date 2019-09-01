@@ -15,7 +15,7 @@ namespace beermeAPI
   {
     public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BeerMeContext>(ops => ops.UseInMemoryDatabase("BeerMe"));
+            services.AddDbContext<BeerMeContext>(ops => ops.UseMySQL("Server=localhost; Port=3306; Database=beerme; Uid=root;"));
             services.AddMvc();
         }
 

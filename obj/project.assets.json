@@ -2745,6 +2745,21 @@
           "lib/netstandard2.0/MySql.Data.EntityFrameworkCore.dll": {}
         }
       },
+      "MySql.Data.EntityFrameworkCore.Design/8.0.17": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Design": "1.1.6",
+          "MySql.Data": "8.0.17",
+          "MySql.Data.EntityFrameworkCore": "8.0.17",
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/netstandard1.6/MySql.Data.EntityFrameworkCore.Design.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/MySql.Data.EntityFrameworkCore.Design.dll": {}
+        }
+      },
       "NETStandard.Library/2.0.0": {
         "type": "package",
         "dependencies": {
@@ -7749,6 +7764,21 @@
         "lib/netstandard2.0/MySql.Data.EntityFrameworkCore.xml",
         "mysql.data.entityframeworkcore.8.0.17.nupkg.sha512",
         "mysql.data.entityframeworkcore.nuspec"
+      ]
+    },
+    "MySql.Data.EntityFrameworkCore.Design/8.0.17": {
+      "sha512": "hnVYn6OKBTQqAwgPmQgSPhCffkJne/GmfhSOMC/ehh8Lw2u+X6UTqEIRsJjVZQhc/X2Pn5ELFfqtp53cLVuzbg==",
+      "type": "package",
+      "path": "mysql.data.entityframeworkcore.design/8.0.17",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net452/MySql.Data.EntityFrameworkCore.Design.dll",
+        "lib/net452/MySql.Data.EntityFrameworkCore.Design.xml",
+        "lib/netstandard1.6/MySql.Data.EntityFrameworkCore.Design.dll",
+        "lib/netstandard1.6/MySql.Data.EntityFrameworkCore.Design.xml",
+        "mysql.data.entityframeworkcore.design.8.0.17.nupkg.sha512",
+        "mysql.data.entityframeworkcore.design.nuspec"
       ]
     },
     "NETStandard.Library/2.0.0": {
@@ -13152,7 +13182,8 @@
       "Microsoft.EntityFrameworkCore >= 2.2.6",
       "Microsoft.EntityFrameworkCore.Tools >= 2.2.6",
       "Microsoft.NETCore.App >= 2.0.0",
-      "MySql.Data.EntityFrameworkCore >= 8.0.17"
+      "MySql.Data.EntityFrameworkCore >= 8.0.17",
+      "MySql.Data.EntityFrameworkCore.Design >= 8.0.17"
     ]
   },
   "packageFolders": {
@@ -13216,6 +13247,10 @@
             "autoReferenced": true
           },
           "MySql.Data.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[8.0.17, )"
+          },
+          "MySql.Data.EntityFrameworkCore.Design": {
             "target": "Package",
             "version": "[8.0.17, )"
           }

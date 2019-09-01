@@ -26,8 +26,19 @@ namespace beermeAPI.Controllers
     //   return Ok(beerList);
     // }
 
-    [HttpGet("{beerId}")]
-    public async Task<IActionResult> Get(int beerId)
+    [HttpGet("/GetAllBeers")]
+    public IActionResult GetAllBeers()
+    {
+      var beerList = db.Beers.ToList();
+      if (beerList == null)
+      {
+        return NotFound();
+      }
+      return Ok(beerList);
+    }
+
+    [HttpGet("/GetBeer/{beerId}")]
+    public async Task<IActionResult> GetBeer(int beerId)
     {
       var beer = await db.Beers.FindAsync(beerId);
       if (beer == null)
@@ -37,16 +48,16 @@ namespace beermeAPI.Controllers
       return Ok(beer);
     }
 
-    [HttpPost]
-    public async Task<IActionResult> AddBeer([FromBody] Beer beer)
+    [HttpPost("/AddBeer")]
+    public async Task<IActionResult> AddBeer(string name)
     {
       if (!ModelState.IsValid)
       {
         return BadRequest(ModelState);
       }
-      await db.Beers.AddAsync(beer);
+      await db.Beers.AddAsync(new Beer(){ Name = name });
       await db.SaveChangesAsync();
-      return Ok(new { BeerId = beer.BeerId });
+      return Ok(new { Message = "New beer added!" });
     }
   }
 
