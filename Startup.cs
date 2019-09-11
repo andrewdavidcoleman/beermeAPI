@@ -15,7 +15,7 @@ namespace beermeAPI
   {
     public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BeerMeContext>(ops => ops.UseMySQL("Server=localhost; Port=3306; Database=beerme; Uid=root;"));
+            services.AddDbContext<BeerMeContext>(ops => ops.UseMySQL("Server=mysql://bf6d7af703f0b8:00e6550b@us-cdbr-iron-east-02.cleardb.net/heroku_56ce30671474616?reconnect=true; Database=beerme; Uid=bf6d7af703f0b8; Password=00e6550b;"));
             services.AddMvc();
         }
 
