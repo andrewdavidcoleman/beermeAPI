@@ -1,74 +1,45 @@
 using System.Collections.Generic;
 using beermeAPI;
+using beermeAPI.Connections;
 using System.Linq;
 using System.Threading.Tasks;
 using beermeAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient;
 
 namespace beermeAPI.Controllers
 {
   [Route("")]
-  public class BeerController : InjectedController
+  public class BeerController
   {
 
-    public BeerController(BeerMeContext context) : base(context) { }
-
-    // GET api/values
-    // [HttpGet]
-    // public async Task<IActionResult> GetAllBeers()
-    // {
-    //   var beerList = await db.Beers.FindAsync();
-    //   if (beerList == default(List<Beer>))
-    //   {
-    //     return NotFound();
-    //   }
-    //   return Ok(beerList);
-    // }
-
-    [HttpGet("/GetAllBeers")]
-    public IActionResult GetAllBeers()
+    private MySqlDatabase db { get; set; }
+    public BeerController(MySqlDatabase db)
     {
-      var beerList = db.Beers.ToList();
-      if (beerList == null)
-      {
-        return NotFound();
-      }
-      return Ok(beerList);
+      this.db = db;
     }
 
-    [HttpGet("/GetBeer/{beerId}")]
-    public async Task<IActionResult> GetBeer(int beerId)
+    [HttpGet]
+    public List<Beer> GetAllBeers()
     {
-      var beer = await db.Beers.FindAsync(beerId);
-      if (beer == null)
-      {
-          return NotFound();
-      }
-      return Ok(beer);
-    }
-
-    [HttpPost("/AddBeer")]
-    public async Task<IActionResult> AddBeer(string name)
-    {
-      if (!ModelState.IsValid)
-      {
-        return BadRequest(ModelState);
-      }
-      await db.Beers.AddAsync(new Beer(){ Name = name });
-      await db.SaveChangesAsync();
-      return Ok(new { Message = "New beer added!" });
-    }
-  }
-
-  // Helper class to take care of db context injection.
-  public class InjectedController: ControllerBase
-  {
-    protected readonly BeerMeContext db;
-
-    public InjectedController(BeerMeContext context)
-    {
-      db = context;
+      var beerList = new List<Beer>();
+      // 
+      // var cmd = this.db.Connection.CreateCommand() as MySqlCommand;
+      // cmd.CommandText = @"SELECT beerId, name FROM beers";
+      //
+      // using(var reader = cmd.ExecuteReader())
+      // {
+      //   while(reader.Read()){
+      //   var beer = new Beer()
+      //   {
+      //     BeerId = reader.GetFieldValue<int>(0),
+      //     Name = reader.GetFieldValue<string>(1)
+      //   };
+      //   beerList.Add(beer);
+      //   }
+      // }
+      return beerList;
     }
   }
 }

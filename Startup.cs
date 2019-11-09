@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using beermeAPI.Connections;
 
 namespace beermeAPI
 {
@@ -15,17 +16,18 @@ namespace beermeAPI
   {
     public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BeerMeContext>(ops => ops.UseMySQL("Server=mysql://bf6d7af703f0b8:00e6550b@us-cdbr-iron-east-02.cleardb.net/heroku_56ce30671474616?reconnect=true; Database=beerme; Uid=bf6d7af703f0b8; Password=00e6550b;"));
             services.AddMvc();
+            services.AddTransient<MySqlDatabase>(_ => new MySqlDatabase("server=localhost; port=3306; database=beerme; uid=Andrew; pwd=;"));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            app.UseMvc();
+          // IServiceCollection.AddMvc();
+          if (env.IsDevelopment())
+          {
+              app.UseDeveloperExceptionPage();
+          }
+          app.UseMvc();
         }
     }
 }

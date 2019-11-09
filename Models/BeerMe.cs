@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace beermeAPI.Models
 {
-  public class BeerMeContext: DbContext
+  public class BeerMeContext : DbContext
   {
     public DbSet<Beer> Beers { get; set; }
 
