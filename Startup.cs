@@ -15,19 +15,18 @@ namespace beermeAPI
   public class Startup
   {
     public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc();
-            services.AddTransient<MySqlDatabase>(_ => new MySqlDatabase("server=localhost; port=3306; database=beerme; uid=Andrew; pwd=;"));
-        }
-
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-          // IServiceCollection.AddMvc();
-          if (env.IsDevelopment())
-          {
-              app.UseDeveloperExceptionPage();
-          }
-          app.UseMvc();
-        }
+    {
+      services.AddMvc();
+      services.AddTransient<MySqlDatabase>(_ => new MySqlDatabase("server=localhost; port=3306; database=beerme; uid=Andrew; pwd=;"));
     }
+
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+    {
+      if (env.IsDevelopment())
+      {
+        app.UseDeveloperExceptionPage();
+      }
+      app.UseMvc();
+    }
+  }
 }
