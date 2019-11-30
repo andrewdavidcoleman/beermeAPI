@@ -20,8 +20,7 @@ namespace beermeAPI.Controllers
     }
 
    [Route("")]
-   [Route("API")]
-   [Route("API/GetAllBeers")]
+   [Route("GetAllBeers")]
     public List<Beer> GetAllBeers()
     {
       var beerList = new List<Beer>();
@@ -33,8 +32,8 @@ namespace beermeAPI.Controllers
         while(reader.Read()){
           var beer = new Beer()
           {
-            BeerId = reader.GetFieldValue<int>(0),
-            Name = reader.GetFieldValue<string>(1)
+            BeerId = reader.GetInt32("beerId"),
+            Name = reader.GetString("name")
           };
           beerList.Add(beer);
         }
@@ -44,17 +43,60 @@ namespace beermeAPI.Controllers
 
     [Route("GetBeerById")]
     public Beer GetBeerById(int beerId){
-      db.CommandText = $"SELECT beerId, name FROM beers where beerId = {beerId}";
+      db.CommandText = $"SELECT * FROM beers WHERE beerId = {beerId}";
       var beer = new Beer();
 
       using(var reader = db.ExecuteReader())
       {
         while(reader.Read()){
-          beer.BeerId = reader.GetFieldValue<int>(0);
-          beer.Name = reader.GetFieldValue<string>(1);
+          beer.BeerId = reader.GetInt32("beerId");
+          beer.Name = reader.GetString("name");
         }
       }
       return beer;
     }
+
+    [Route("GetIngredientsByBeerId")]
+    public List<Ingredient> GetIngredientsByBeerId(int beerId){
+      db.CommandText = $"SELECT * FROM ingredients WHERE beerId = {beerId} ORDER BY sequence ASC";
+      var ingredientList = new List<Ingredient>();
+
+      using(var reader = db.ExecuteReader())
+      {
+        while(reader.Read()){
+          var ingredient = new Ingredient()
+          {
+            IngredientId = reader.GetInt32("ingredientId"),
+            BeerId = reader.GetInt32("beerId"),
+            Description = reader.GetString("description"),
+            Sequence = reader.GetInt32("sequence")
+          };
+          ingredientList.Add(ingredient);
+        }
+      }
+      return ingredientList;
+    }
+
+    [Route("GetDirectionsByBeerId")]
+    public List<Direction> GetDirectionsByBeerId(int beerId){
+      db.CommandText = $"SELECT * FROM ingredients WHERE beerId = {beerId} ORDER BY sequence ASC";
+      var ingredientList = new List<Ingredient>();
+
+      using(var reader = db.ExecuteReader())
+      {
+        while(reader.Read()){
+          var ingredient = new Ingredient()
+          {
+            IngredientId = reader.GetInt32("ingredientId"),
+            BeerId = reader.GetInt32("beerId"),
+            Description = reader.GetString("description"),
+            Sequence = reader.GetInt32("sequence")
+          };
+          ingredientList.Add(ingredient);
+        }
+      }
+      return ingredientList;
+    }
+
   }
 }
