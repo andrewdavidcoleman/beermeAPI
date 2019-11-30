@@ -79,23 +79,23 @@ namespace beermeAPI.Controllers
 
     [Route("GetDirectionsByBeerId")]
     public List<Direction> GetDirectionsByBeerId(int beerId){
-      db.CommandText = $"SELECT * FROM ingredients WHERE beerId = {beerId} ORDER BY sequence ASC";
-      var ingredientList = new List<Ingredient>();
+      db.CommandText = $"SELECT * FROM directions WHERE beerId = {beerId} ORDER BY sequence ASC";
+      var directionList = new List<Direction>();
 
       using(var reader = db.ExecuteReader())
       {
         while(reader.Read()){
-          var ingredient = new Ingredient()
+          var direction = new Direction()
           {
-            IngredientId = reader.GetInt32("ingredientId"),
+            DirectionId = reader.GetInt32("directionId"),
             BeerId = reader.GetInt32("beerId"),
             Description = reader.GetString("description"),
             Sequence = reader.GetInt32("sequence")
           };
-          ingredientList.Add(ingredient);
+          directionList.Add(direction);
         }
       }
-      return ingredientList;
+      return directionList;
     }
 
   }

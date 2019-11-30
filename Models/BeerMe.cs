@@ -54,7 +54,7 @@ namespace beermeAPI.Models
     public int BeerId { get; set; }
 
     [Required]
-    public int Description { get; set; }
+    public string Description { get; set; }
 
     [Required]
     public int Sequence { get; set; }
